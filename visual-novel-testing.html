@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 1</title>
+<style>
+body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	background-color: black;
+	margin: 0;
+	}
+
+/* Main container */
+.game {
+  background-image: url(game-img/hospitalroom.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  
+}
+
+.character-img {
+	
+	position: absolute;
+	align-items: center;
+	display: flex;
+	max-width: 25%;
+	z-index: 0;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	left: 300px;
+	width: 700px;
+	height: 120px;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 4;
+	}
+
+.character-name {
+	position: absolute;
+	text-align: center;
+	}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+
+<div class="bg img">
+	</div>
+
+<div class="game">
+
+	<div class="character-img">
+	<img src="game-img/Nurse-Closed.png">
+
+	</div>
+
+	<div class="dialoguebox" id="box">
+	<div id="text">
+	</div>
+</div>
+
+<script>
+const dialogue = [
+	"You wake up in a hospital room.",
+	"Your body feels lethargic.",
+	"Your eyes are weary. You have to adjust to the light coming in through the window.",
+	"Oh... You're awake.",
+];
+
+let index = 0;
+let typing = false;
+const textEl = document.getElementById("text");
+const box = document.getElementById("box");
+box.addEventListener("click", next);
+
+function typeLine(line) {
+	typing = true;
+	textEl.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		textEl.innerHTML += line[i];
+		i++;
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} function next() {
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		textEl.innerHTML = ".";
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+typeLine(dialogue[index]);
+</script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 1</title>
+<style>
+html, body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	background-color: black;
+	margin: 0;
+	height: 100%;
+	}
+
+/* Main container */
+.bg {
+  position: relative;
+  background-image: url(game-img/hospitalroom.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  
+}
+
+.character-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 25%;
+	z-index: 3;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	left: 300px;
+	width: 50%;
+	height: 10%;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 4;
+	}
+
+.character-name {
+	position: absolute;
+	text-align: center;
+	background-color: black;
+	opacity: 80%;
+	padding: 5px;
+	}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+
+	<div class="dialoguebox" id="box">
+	<div id="text">
+	<div class="character-name"> id="name">Nurse</div>
+	</div>
+</div>
+
+<script>
+const dialogue = [
+	"You wake up in a hospital room.",
+	"Your body feels lethargic.",
+	"Your eyes are weary. You have to adjust to the light coming in through the window.",
+];
+
+let index = 0;
+let typing = false;
+const textEl = document.getElementById("text");
+const box = document.getElementById("box");
+box.addEventListener("click", next);
+
+function typeLine(line) {
+	typing = true;
+	textEl.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		textEl.innerHTML += line[i];
+		i++;
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} function next() {
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		textEl.innerHTML = "You hear a noise to the right of you.";
+		box.removeEventListener("click", next);
+		box.addEventListener("click", () => window.location.href = "D1-Nurse.html");
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+typeLine(dialogue[index]);
+</script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 1</title>
+<style>
+html, body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	background-color: black;
+	margin: 0;
+	height: 100%;
+	}
+
+/* Main container */
+.bg {
+  position: relative;
+  background-image: url(game-img/hospitalroom-door.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  
+}
+
+.character-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 30%;
+	z-index: 3;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	left: 300px;
+	width: 40%;
+	height: 10%;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 4;
+	}
+
+.character-name {
+	position: absolute;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	opacity: 100%;
+	top: -35px;
+	left: 0;
+	width: 30%;
+	height: 30px;
+	color: #F2F2F2;
+	border: 1px solid white;
+	cursor: default;
+	}
+
+@media (min-width: 1200px) {
+	.character-name {
+		width: 20%;
+		height: 28px;
+		top: -32px;
+		font-size: 1rem;
+	}
+}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+.red-text {
+	color: red !important;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+
+	<div class="character-img">
+	<img id="characterImg" src="game-img/Nurse-Talk.png">
+	</div>
+
+	<div class="dialoguebox" id="box">
+	<div class="character-name" id="name"></div>
+	<div id="text"></div>
+</div>
+
+<script>
+const dialogue1 = [
+	"Oh… you are awake..",
+];
+
+const dialogue2 = [
+	"She gives you a rudimentary look-over.",
+	"It is hard to read the expression on her face.",
+];
+
+const dialogue3 = [
+	"I'm glad that you are conscious enough to ask.",
+	"You had recently been in an accident.",
+	"I was assigned to be your nurse.",
+
+];
+
+const dialogue4 = [
+	"She glances down at her clipboard before responding.",
+]
+
+const dialogue5 = [
+	"You have been checked into the hospital for… the past five days.",
+	"I am the nurse assigned to take care of you.",
+]
+
+const dialogue6 = [
+	"Do you remember your name?",
+]
+
+const dialogue7 = [
+	"You open your mouth upon instinct but no words reach your brain.",
+]
+
+const dialogue8 = [
+	"…How much do you remember?",
+]
+
+const dialogue9 = [
+	"You try your best to recall but you are met with a pounding headache.",
+]
+
+const dialogue10 = [
+	"I see",
+	"You were found collapsed in your dormitory. It doesn't appear that you're concussed but you suffered a minor head wound.",
+	"Your vitals had shown signs of extreme stress.",
+	"I will leave you to rest.",
+	"You can call me by the doorway to your left when you are ready to meet your visitors.",
+]
+
+const dialogue11 = [
+	"Visitors?",
+]
+
+const dialogue12 = [
+	"Yes, some of them left gifts in the <span class='red-text'>closet</span> for you, next to the <span class='red-text'>mirror</span>. I also left the <span class='red-text'>bathroom door</span> open if you wanted some privacy to think.",
+]
+
+const dialogue13 = [
+	"Thank you, I guess?",
+]
+
+const dialogue14 = [
+	"That will be all.",
+	"Remember to call me at the <span class='red-text'>doorway</span> when you are ready to meet your visitors."
+]
+
+let dialogue = dialogue1;
+let index = 0;
+let typing = false;
+const textEl = document.getElementById("text");
+const box = document.getElementById("box");
+const nameEl = document.getElementById("name");
+document.getElementById("characterImg").src = "game-img/Nurse-Talk.png";
+nameEl.innerHTML = "???";
+box.addEventListener("click", next);
+
+function typeLine(line) {
+	typing = true;
+	textEl.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		// Check if we're at an HTML tag
+		if (line[i] === '<') {
+			// Find the end of the tag
+			let j = i;
+			while (j < line.length && line[j] !== '>') {
+				j++;
+			}
+			// Add the entire tag as one unit
+			textEl.innerHTML += line.slice(i, j + 1);
+			i = j + 1;
+		} else {
+			textEl.innerHTML += line[i];
+			i++;
+		}
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} 
+
+function loadDialogue(newDialogue) {
+	dialogue = newDialogue;
+	index = 0;
+	if (newDialogue === dialogue3 || newDialogue === dialogue5 || newDialogue === dialogue8 || newDialogue === dialogue10 || newDialogue === dialogue12 || newDialogue === dialogue14) {
+		nameEl.innerHTML = "Nurse";
+		document.getElementById("characterImg").src = "game-img/Nurse-Talk.png";
+	} else if (newDialogue === dialogue2 || newDialogue === dialogue4 || newDialogue === dialogue7 || newDialogue === dialogue9) {
+		nameEl.innerHTML = "";
+		document.getElementById("characterImg").src = "game-img/Nurse-Closed.png";
+	} else if (newDialogue === dialogue11 || newDialogue === dialogue13) {
+		nameEl.innerHTML = "You";
+		document.getElementById("characterImg").src = "game-img/Nurse-Closed.png";
+	}
+	box.removeEventListener("click", next);
+	typeLine(dialogue[index]);
+	box.addEventListener("click", next);
+}
+
+function next() {
+	// index++;
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		if (dialogue === dialogue1){
+			textEl.innerHTML = '<button onclick="loadDialogue(dialogue2)">Who are you?</button> <button onclick="loadDialogue(dialogue4)">Where am I?</button>';
+			box.removeEventListener("click", next);
+		} else if (dialogue === dialogue2) {
+			loadDialogue(dialogue3);
+		} else if (dialogue === dialogue4) {
+			loadDialogue(dialogue5);
+		} else if (dialogue === dialogue3 || dialogue === dialogue5) {
+			loadDialogue(dialogue6);
+		} else if (dialogue === dialogue6 || dialogue === dialogue7) {
+			loadDialogue(dialogue === dialogue6 ? dialogue7 : dialogue8);
+		} else if (dialogue === dialogue8) {
+			textEl.innerHTML = '<button onclick="loadDialogue(dialogue9)">Try to remember</button>';
+			box.removeEventListener("click", next);
+		} else if (dialogue === dialogue9 || dialogue === dialogue10 || dialogue === dialogue11 || dialogue === dialogue12) {
+			loadDialogue(dialogue === dialogue9 ? dialogue10 : dialogue === dialogue10 ? dialogue11 : dialogue === dialogue11 ? dialogue12 : dialogue13);
+		}
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+typeLine(dialogue[index]);
+</script>
+
+
+</body>
+</html>
+

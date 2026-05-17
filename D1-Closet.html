@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Day 1-What's in the Closet?</title>
+<style>
+html, body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	}
+
+/* Main container */
+.bg {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.room-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hotspots {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	z-index: 3;
+	width: 1920px;
+  	height: 1080px;
+
+ 	transform-origin: top left;
+}
+
+.hotspot {
+	position: absolute;
+  	cursor: pointer;
+}
+
+.hotspot:hover {
+ 	background: rgba(255, 0, 0, 0.25);
+}
+
+.hotspot img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.hidden {
+	display: none;
+}
+
+.object-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 30%;
+	z-index: 4;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	left: 300px;
+	width: 40%;
+	height: 10%;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+	}
+
+.object-name {
+	position: absolute;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	opacity: 100%;
+	top: -35px;
+	left: 0;
+	width: 30%;
+	height: 30px;
+	color: #F2F2F2;
+	border: 1px solid white;
+	cursor: default;
+	}
+
+@media (min-width: 1200px) {
+	.character-name {
+		width: 20%;
+		height: 28px;
+		top: -32px;
+		font-size: 1rem;
+	}
+}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+<div class="bg">
+	<img src="game-img/cabinet1.png" class="room-img">
+	<div class="hotspots">
+		<!--Link Hotspot-->
+		<a href="D1-Bed.html"
+		title="Return to hospital room..."
+		class="hotspot"
+		style="
+		  bottom: 0px; 
+		  left: 0px;
+		  width: 500px;
+		  height: 1080px;
+		"></a>
+
+		<!--Object Hotspots-->
+		<div 
+			class="hotspot"
+			id="flowers-hotspot"
+			title="The smell of flowers beckon you closer..."
+			style="
+			top: 40px; 
+			left: 780px;
+			width: 230px;
+			height: 340px;
+			">
+			<img src="game-img/flowers.png"/>
+		</div>
+		<div
+			title="What's that cute thing?"
+			class="hotspot"
+			id="turtle-hotspot"
+			style="
+			top: 270px;
+			left: 970px;
+			width: 193px;
+			height: 138px;
+			z-index: 6;
+			">
+			<img src="game-img/turtle.png"/>
+		</div>
+		<div
+			title="A colorful pile draws your eye..."
+			class="hotspot"
+			id="snacks-hotspot"
+			style="
+			top: 500px;
+			left: 800px;
+			width: 300px;
+			height: 230px;
+			">
+			<img src="game-img/snacks2.png"/>	
+		</div>
+	</div>
+
+	<!---Dialogue Box-->
+	<div class="dialoguebox hidden" id="box">
+		<div class="object-name hidden" id="name"></div>
+		<div id="text"></div>
+</div>
+
+<script>
+	/// Different Hotspots
+
+const flowersHotspot = document.getElementById('flowers-hotspot');
+const turtleHotspot = document.getElementById('turtle-hotspot');	
+const snacksHotspot = document.getElementById('snacks-hotspot');
+
+	/// Hotspot scaling
+function scaleHotspots() {
+  const scaleX = window.innerWidth / 1920;
+  const scaleY = window.innerHeight / 1080;
+
+  const el = document.querySelector('.hotspots');
+  el.style.transform = `scale(${scaleX}, ${scaleY})`;
+}
+window.addEventListener('resize', scaleHotspots);
+window.addEventListener('load', scaleHotspots);
+
+/// Define dialogue box and text elements
+let dialogue = [];
+let index = 0;
+let typing = false;
+const objectName = document.getElementById('name');
+const dialogueBox = document.getElementById('box');
+const text = document.getElementById('text');
+
+/// Typing effect
+function typeLine(line) {
+	typing = true;
+	text.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		// Check if we're at an HTML tag
+		if (line[i] === '<') {
+			// Find the end of the tag
+			let j = i;
+			while (j < line.length && line[j] !== '>') {
+				j++;
+			}
+			// Add the entire tag as one unit
+			text.innerHTML += line.slice(i, j + 1);
+			i = j + 1;
+		} else {
+			text.innerHTML += line[i];
+			i++;
+		}
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} 
+
+/// Load dialogue function
+function loadDialogue(newDialogue, objectTitle) {
+	dialogue = newDialogue;
+	index = 0;
+	objectName.classList.remove("hidden");
+	objectName.innerHTML = objectTitle;
+	dialogueBox.classList.remove("hidden");
+	box.removeEventListener("click", next);
+	typeLine(dialogue[index]);
+	box.addEventListener("click", next);
+
+function next() {
+	// index++;
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		dialogueBox.classList.add('hidden');
+		objectName.classList.add('hidden');
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+}
+
+/// Actual Dialogue
+const flowerDialogue = [
+	"Perfectly arranged.",
+	"You see the postal note attached that reads 'shipped from Leverton&Sons Firm'.",
+	"Definitely not cheap."
+];
+
+const turtleDialogue = [
+	"An adorable stuffed turtle toy.",
+	"You would take it out and squish it if your arms were not insanely sore.",
+	"Wonder who it is from?"
+];
+
+const snacksDialogue = [
+	"An assortment of tasty treats that could be from your local supermarket.",
+	"You count at least five sugar infused sodas that the nurse most definitely will not let you have.",
+	"You make a note to stash them somewhere secret for later.",
+];
+
+flowersHotspot.addEventListener("click", () => {
+	loadDialogue(flowerDialogue, "Bouquet of Flowers");
+	});
+
+turtleHotspot.addEventListener("click", () => {
+	loadDialogue(turtleDialogue, "Stuffed Turtle Toy");
+	});
+
+snacksHotspot.addEventListener("click", () => {
+	loadDialogue(snacksDialogue, "Asian Snacks");
+	});
+
+</script>
+
+</body>

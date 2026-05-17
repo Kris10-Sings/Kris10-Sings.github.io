@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Day 1-Room Exploration</title>
 <style>
 html, body {
@@ -48,6 +48,7 @@ html, body {
 .hotspot {
 	position: absolute;
   	cursor: pointer;
+	background: transparent;
 }
 
 .hotspot:hover {
@@ -138,40 +139,40 @@ window.addEventListener('load', scaleHotspots);
 
 <body>
 <div class="bg">
-	<img src="game-img/hospitalroom.png" class="room-img">
-	<!--Hospital Room Door--->
+	<img src="game-img/hospitalroom-door.png" class="room-img">
 	<div class="hotspots">
-		<a href="D1-Door.html"
-		title="Check doorway area..."
+		<!--Hospital Room Door--->
+		<a href="D1-Bed.html"
+		title="Return to bed..."
 		class="hotspot"
 		style="
-		  left: 0px;
+		 	top: 0px; 
+		  right: 0px;
 		  width: 384px;
 		  height: 1080px;
 		">
 		</a>
-
-		<a href="D1-Closet.html"
-		title="Check closet..."
+		<!--Bathroom--->
+		<a href="D1-Bathroom.html"
+		title="Check bathroom..."
 		class="hotspot"
 		style="
-		  left: 883px;
-		  top: 108px;
-		  bottom: 108px;
-		  width: 230px;
-		  height: 648px;
+		  left: 730px;
+		  top: 216px;
+		  width: 135px;
+		  height: 540px;
 		">
-
-		<a href="D1-Mirror.html"
-		title="Check mirror..."
+		</a>
+		<!--Entrance--->
+		<a href="D1-Entrance.html"
+		title="Tell the nurse you're ready for guests."
 		class="hotspot"
 		style="
-		  left: 634px;
-		  top: 302px;
-		  width: 192px;
-		  height: 302px;
-		  border-radius: 50%;
-		  ">
+		  left: 384px;
+		  top: 346px;
+		  width: 211px;
+		  height: 454px;
+		">
 		</a>
 	</div>
 </body>

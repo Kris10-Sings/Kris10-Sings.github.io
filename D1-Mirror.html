@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Day 1-What's in the Closet?</title>
+<style>
+html, body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	}
+
+/* Main container */
+.bg {
+	position: relative;
+	background-color:rgba(177, 164, 128, 1);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.character-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 30%;
+	z-index: 3;
+}
+
+.hotspots {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	z-index: 3;
+	width: 1920px;
+  	height: 1080px;
+
+ 	transform-origin: top left;
+}
+
+.hotspot {
+	position: absolute;
+  	cursor: pointer;
+}
+
+.hotspot:hover {
+ 	background: rgba(255, 0, 0, 0.25);
+}
+
+.hotspot img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.hidden {
+	display: none;
+}
+
+.object-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 30%;
+	z-index: 4;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	width: 40%;
+	height: 10%;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 5;
+	}
+
+@media (min-width: 1200px) {
+	.character-name {
+		width: 20%;
+		height: 28px;
+		top: -32px;
+		font-size: 1rem;
+	}
+}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+<div class="bg">
+	<div class="character-img">
+	<img id="characterImg" src="game-img/mirror.png">
+	</div>
+
+	<div class="dialoguebox" id="box">
+	<div class="character-name" id="name"></div>
+	<div id="text"></div>
+</div>
+	<!---Dialogue Box-->
+	<div class="dialoguebox hidden" id="box">
+		<div class="object-name hidden" id="name"></div>
+		<div id="text"></div>
+</div>
+
+<script>
+const dialogue = [
+	"You take a look at your own reflection.",
+	"You do not quite recognize the person staring back at you.",
+	"You wonder if you will ever find out."
+];
+
+let index = 0;
+let typing = false;
+const textEl = document.getElementById("text");
+const box = document.getElementById("box");
+box.addEventListener("click", next);
+
+function typeLine(line) {
+	typing = true;
+	textEl.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		textEl.innerHTML += line[i];
+		i++;
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} function next() {
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		box.removeEventListener("click", next);
+		textEl.innerHTML = '<a href="D1-Bed.html"><button>Finish looking at mirror</button></a>';
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+typeLine(dialogue[index]);
+</script>
+</body>
+</html>

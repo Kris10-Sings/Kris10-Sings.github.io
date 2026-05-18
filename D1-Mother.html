@@ -352,7 +352,10 @@ function next() {
 		} else if (dialogue === dialogue9 || dialogue === dialogue10 || dialogue === dialogue11 || dialogue === dialogue12 || dialogue === dialogue13 || dialogue === dialogue14) {
 			loadDialogue(dialogue === dialogue9 ? dialogue10 : dialogue === dialogue10 ? dialogue11 : dialogue === dialogue11 ? dialogue12 : dialogue === dialogue12 ? dialogue13 : dialogue === dialogue13 ? dialogue14 : dialogue15);
 		} else if (dialogue === dialogue15) {
-			textEl.innerHTML = '<button>Question 1</button></a>';
+			textEl.innerHTML = `
+			<button onclick="loadDialogue(dialogue16)">Why flowers?</button>
+			<button onclick="loadDialogue(dialogue20)">What kind of person was I?</button>`;
+			box.removeEventListener("click", next);
 			return;
 		}
 		return;

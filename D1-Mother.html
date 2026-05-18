@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day 1: First Round of Visitors</title>
+<style>
+html, body {
+	font-family: Courier, monospace;
+	color: #F2F2F2;
+	background-color: black;
+	margin: 0;
+	height: 100%;
+	}
+
+/* Main container */
+.bg {
+  position: relative;
+  background-image: url(game-img/hospitalroom-door.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  
+}
+
+.character-img {
+	position: absolute;
+	justify-content: center;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 30%;
+	z-index: 3;
+}
+
+.dialoguebox {
+	position: absolute;
+	bottom: 0;
+	left: 300px;
+	width: 40%;
+	height: 10%;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: black;
+	opacity: 70%;
+	z-index: 4;
+	}
+
+.character-name {
+	position: absolute;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	opacity: 100%;
+	top: -35px;
+	left: 0;
+	width: 30%;
+	height: 30px;
+	color: #F2F2F2;
+	border: 1px solid white;
+	cursor: default;
+	}
+
+@media (min-width: 1200px) {
+	.character-name {
+		width: 20%;
+		height: 28px;
+		top: -32px;
+		font-size: 1rem;
+	}
+}
+
+#text {
+	font-size: 20px;
+	text-align: center;
+	min-height: 30px;
+	}
+
+@keyframes blink {
+	50% { opacity: 0; }
+	}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+
+	<div class="character-img">
+	<img id="characterImg" src="game-img/Mother-Frown.png">
+	</div>
+
+	<div class="dialoguebox" id="box">
+	<div class="character-name" id="name"></div>
+	<div id="text"></div>
+</div>
+
+<script>
+
+const dialogue1 = [
+	"I'm sorry for arriving late- I was caught up by traffic.",
+	"The firm had a major emergency when I got the call that you woke up.",
+	"And I came here as soon as I could.",
+]
+
+const dialogue2 = [
+	"...",
+];
+
+const dialogue3 = [
+	"Is it true?",
+	"Do you really not remember?",
+];
+
+const dialogue4 = [
+	"You hesitantly nod.",
+	"The woman, in what seems her late 40s, stares at you with an intensity.",
+	"Her lips pursed and glossy with hastily applied lipstick.",
+	"You swear you feel her analytical gaze boring a hole through your skull."
+];
+
+const dialogue5 = [
+	"So it is true...",
+]
+
+const dialogue6 = [
+	"She looks away from you and massages her temples.",
+	"You hear the deep exhale of someone processing the impossible.",
+]
+
+const dialogue7 = [
+	"I see.",
+	"I'm sure this must be very disorientating for you.",
+]
+
+const dialogue8 = [
+	"I am... your mother.",
+	"The nurse said that apart from your memory loss, you seem to be cognitively stable.",
+]
+
+const dialogue9 = [
+	"She notices your slightly squinting expression.",
+]
+
+const dialogue10 = [
+	"Aside from your sensitivity to light.",
+	"But it should be temporary.",
+]
+
+const dialogue11 = [
+	"...",
+]
+
+const dialogue12 = [
+	"I'm sorry. I'm going about this all wrong, aren't I?",
+]
+
+const dialogue13 = [
+	"Truth be told, we haven't spoken in a while.",
+	"When I got the call from the hospital, I was at the firm.",
+	"At the time… We had our differences about whether you were…",
+]
+
+const dialogue14 = [
+	"...",
+]
+
+const dialogue15 = [
+	"Well, we can talk about that later.",
+	"I'm sure you have lots of questions."
+]
+
+const dialogue16 = [
+	"You were comatose for nearly a week.",	
+	"Everyone at the firm was very sympathetic.",
+	"They arranged a bouquet to give you, with the note I left in the closet.",
+	"All fresh flowers, the highest of quality.",
+	"However, I couldn't find any purple hyacinths.",
+	"I remember, you like-",
+]
+
+const dialogue17 = [
+	"You used to like purple hyacinths.",
+]
+
+const dialogue18 = [
+	"When you were small, you used to collect them from every backyard.",
+	"It would always take hours to clean up.",
+	"But you would look like royalty, covered head to toe in purple.",
+	"I never quite understood it.",
+	"But I knew you were happy.",
+]
+
+const dialogue19 = [
+	"It's harder for me to tell whether you are happy now."
+]
+
+const dialogue20 = [
+	"Well...",
+	"You were always a bright kid.",
+	"You existed with your nose in books.",
+	"And you insisted on accompanying me to every hearing.",
+	"Nevermind that I worked at a law firm that specialized in criminal trials.",
+	"You would ask endless questions about the sketchiest cases.",
+	"You were stubborn too.",
+	"You had refused to let go of my sleeve when I dropped you off for school.",
+	"That was the loudest I've ever heard you cry.",
+	"And I saw less of it over the years.",
+	"Sometimes I felt... like I had no clue what you were thinking.",
+	"Or why you chose the things you did.",
+	"But I had always respected your choices.",
+	"Even when you chose to take a break from your studies.",
+]
+
+const dialogue21 = [
+	"...",
+]
+
+const dialogue22 = [
+	"You may not remember it, but I was…",
+	"A bit shocked, when you told me that you were planning to take a gap year.",
+	"You were no stranger to spontaneous decisions.",
+	"But even you must've known the risks of taking breaks.",
+	"'Knowledge is a muscle we must consistently use' after all.",
+]
+
+const dialogue23 = [
+	"You feel a sense of deja vu. Maybe it was a familiar saying."
+]
+
+const dialogue24 = [
+
+]
+
+const dialogue30 = [
+	"But regardless of your past decisions.",
+	"That is the past.",
+	"I don't expect you to remember, but you're still my daughter."
+]
+
+let dialogue = dialogue1;
+let index = 0;
+let typing = false;
+const textEl = document.getElementById("text");
+const box = document.getElementById("box");
+const nameEl = document.getElementById("name");
+document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
+nameEl.innerHTML = "???";
+box.addEventListener("click", next);
+
+function typeLine(line) {
+	typing = true;
+	textEl.innerHTML = "";
+	let i = 0;
+	const interval = setInterval(() => 
+		{
+		// Check if we're at an HTML tag
+		if (line[i] === '<') {
+			// Find the end of the tag
+			let j = i;
+			while (j < line.length && line[j] !== '>') {
+				j++;
+			}
+			// Add the entire tag as one unit
+			textEl.innerHTML += line.slice(i, j + 1);
+			i = j + 1;
+		} else {
+			textEl.innerHTML += line[i];
+			i++;
+		}
+		if (i >= line.length) {
+			clearInterval(interval);
+			typing = false;
+		}
+	}, 35); 
+} 
+
+function loadDialogue(newDialogue) {
+	dialogue = newDialogue;
+	index = 0;
+	// Mother Unknown //
+	if (newDialogue === dialogue5 || newDialogue === dialogue7) {
+		nameEl.innerHTML = "???";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious-Talk.png";
+	} else if (newDialogue === dialogue1 || newDialogue === dialogue3) {
+		nameEl.innerHTML = "???";
+		document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
+	} else if (newDialogue === dialogue6) {
+		nameEl.innerHTML = "???";
+		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
+
+	// Mother Known // 
+	} else if (newDialogue === dialogue8 || newDialogue === dialogue10 ||newDialogue === dialogue15 || newDialogue === dialogue16 || newDialogue === dialogue19){
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious-Talk.png";
+	} else if (newDialogue === dialogue9 || newDialogue === dialogue4){
+		nameEl.innerHTML = "";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+	} else if (newDialogue === dialogue12 || newDialogue === dialogue13) {
+		nameEl.innerHTML = "Mother"
+		document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
+
+	} else if (newDialogue === dialogue17) {
+		nameEl.innerHTML = "Mother"
+		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
+
+	} else if (newDialogue === dialogue18 || newDialogue === dialogue20) {
+		nameEl.innerHTML = "Mother"
+		document.getElementById("characterImg").src = "game-img/Mother-Smile-Talk.png";
+
+	// Mother Silent
+	} else if (newDialogue === dialogue2) {
+		nameEl.innerHTML = "???";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+	} else if (newDialogue === dialogue11 || newDialogue === dialogue14 || newDialogue === dialogue20) {
+		nameEl.innerHTML = "Mother"
+		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+	}
+	box.removeEventListener("click", next);
+	typeLine(dialogue[index]);
+	box.addEventListener("click", next);
+}
+
+function next() {
+	// index++;
+	if (typing) return;
+	index++;
+	if (index >= dialogue.length) {
+		if (dialogue === dialogue1){
+			loadDialogue(dialogue2)
+		} else if (dialogue === dialogue2 || dialogue === dialogue3 || dialogue === dialogue4 || dialogue === dialogue5) {
+			loadDialogue(dialogue === dialogue2 ? dialogue3 : dialogue === dialogue3 ? dialogue4 : dialogue === dialogue4 ? dialogue5 : dialogue6);
+		} else if (dialogue === dialogue6 || dialogue === dialogue7 || dialogue === dialogue8) {
+			loadDialogue(dialogue === dialogue6 ? dialogue7 : dialogue === dialogue7 ? dialogue8 : dialogue9);
+		} else if (dialogue === dialogue9 || dialogue === dialogue10 || dialogue === dialogue11 || dialogue === dialogue12 || dialogue === dialogue13 || dialogue === dialogue14) {
+			loadDialogue(dialogue === dialogue9 ? dialogue10 : dialogue === dialogue10 ? dialogue11 : dialogue === dialogue11 ? dialogue12 : dialogue === dialogue12 ? dialogue13 : dialogue === dialogue13 ? dialogue14 : dialogue15);
+		} else if (dialogue === dialogue15) {
+			textEl.innerHTML = '<button>Question 1</button></a>';
+			return;
+		}
+		return;
+	}
+	typeLine(dialogue[index]);
+}
+typeLine(dialogue[index]);
+</script>
+
+
+</body>
+</html>

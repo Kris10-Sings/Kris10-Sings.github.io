@@ -52,7 +52,7 @@ html, body {
 .hotspot img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 	display: block;
 }
 
@@ -149,37 +149,37 @@ html, body {
 			id="flowers-hotspot"
 			title="The smell of flowers beckon you closer..."
 			style="
-			top: 40px; 
+			top: 25px; 
 			left: 780px;
-			width: 230px;
-			height: 340px;
+			width: 250px;
+			height: 350px;
 			">
-			<img src="game-img/flowers.png"/>
+			<img src="game-img/flowers2.png"/>
 		</div>
 		<div
 			title="What's that cute thing?"
 			class="hotspot"
 			id="turtle-hotspot"
 			style="
-			top: 270px;
+			top: 250px;
 			left: 970px;
-			width: 193px;
-			height: 138px;
+			width: 200px;
+			height: 200px;
 			z-index: 6;
 			">
-			<img src="game-img/turtle.png"/>
+			<img src="game-img/turtle2.png"/>
 		</div>
 		<div
 			title="A colorful pile draws your eye..."
 			class="hotspot"
 			id="snacks-hotspot"
 			style="
-			top: 500px;
-			left: 800px;
-			width: 300px;
-			height: 230px;
+			top: 540px;
+			left: 780px;
+			width: 360px;
+			height: 260px;
 			">
-			<img src="game-img/snacks2.png"/>	
+			<img src="game-img/snacks3.png"/>	
 		</div>
 	</div>
 
@@ -269,19 +269,20 @@ function next() {
 
 /// Actual Dialogue
 const flowerDialogue = [
-	"Perfectly arranged.",
-	"You see the postal note attached that reads 'shipped from Leverton&Sons Firm'.",
-	"Definitely not cheap."
+	"Perfectly arranged. And definitely not cheap. (Click for more details)",
+	"The attached postal note reads 'shipped from Leverton&Sons Firm'.",
+	"You see there is a small letter left to the side, titled 'From Mother'.",
+	"It reads: 'Wishing you good health and a quick recovery.'"
 ];
 
 const turtleDialogue = [
-	"An adorable stuffed turtle toy.",
-	"You would take it out and squish it if your arms were not insanely sore.",
+	"An adorable stuffed turtle toy. (Click for more details)",
+	"You would take it out and squish it if your body had more strength.",
 	"Wonder who it is from?"
 ];
 
 const snacksDialogue = [
-	"An assortment of tasty treats that could be from your local supermarket.",
+	"An assortment of tasty treats that could be from your local supermarket. (Click for more details)",
 	"You count at least five sugar infused sodas that the nurse most definitely will not let you have.",
 	"You make a note to stash them somewhere secret for later.",
 ];

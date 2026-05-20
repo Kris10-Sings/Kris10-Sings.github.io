@@ -111,14 +111,21 @@ html, body {
 
 <script>
 
+const intro = [
+	"You watch as the Nurse lets in the following visitor.",
+	"A woman enters. She seems in her late 40s.",
+	"Her coat is office-like and drapes to her waist.",
+	"You hear the clacking of high heels on linoleum tiles getting closer."
+]
+
 const dialogue1 = [
-	"I'm sorry for arriving late- I was caught up by traffic.",
-	"The firm had a major emergency when I got the call that you woke up.",
-	"And I came here as soon as I could.",
+	"I'm sorry for arriving late-",
+	"The firm had one of those all-hands-on-deck emergencies.",
+	"I came here as soon as I got the call.",
 ]
 
 const dialogue2 = [
-	"...",
+	". . .",
 ];
 
 const dialogue3 = [
@@ -128,9 +135,8 @@ const dialogue3 = [
 
 const dialogue4 = [
 	"You hesitantly nod.",
-	"The woman, in what seems her late 40s, stares at you with an intensity.",
-	"Her lips pursed and glossy with hastily applied lipstick.",
-	"You swear you feel her analytical gaze boring a hole through your skull."
+	"She stares at you with an intensity.",
+	"You swear you feel her gaze boring a hole through your skull."
 ];
 
 const dialogue5 = [
@@ -139,21 +145,22 @@ const dialogue5 = [
 
 const dialogue6 = [
 	"She looks away from you and massages her temples.",
-	"You hear the deep exhale of someone processing the impossible.",
+	"She exhales as if she's processing the impossible.",
 ]
 
 const dialogue7 = [
 	"I see.",
-	"I'm sure this must be very disorientating for you.",
+	"I'm sure this must be very disorientating.",
 ]
 
 const dialogue8 = [
 	"I am... your mother.",
-	"The nurse said that apart from your memory loss, you seem to be cognitively stable.",
+	"The nurse said that apart from memory loss,",
+	"You seem to be cognitively stable.",
 ]
 
 const dialogue9 = [
-	"She notices your slightly squinting expression.",
+	"You squint up at her.",
 ]
 
 const dialogue10 = [
@@ -162,21 +169,26 @@ const dialogue10 = [
 ]
 
 const dialogue11 = [
-	"...",
+	". . .",
 ]
 
 const dialogue12 = [
-	"I'm sorry. I'm going about this all wrong, aren't I?",
+	"I'm sorry.",
+	"I'm going about this all wrong, aren't I?",
 ]
 
 const dialogue13 = [
 	"Truth be told, we haven't spoken in a while.",
-	"When I got the call from the hospital, I was at the firm.",
-	"At the time… We had our differences about whether you were…",
+	"When I got the call from the hospital,",
+	"I was at the firm.",
+	"They let me go,",
+	"They knew about your accident, and they even picked out flowers for you.",
+	"They also knew that at the time...",
+	"The two of us weren't really...",
 ]
 
 const dialogue14 = [
-	"...",
+	". . .",
 ]
 
 const dialogue15 = [
@@ -185,9 +197,10 @@ const dialogue15 = [
 ]
 
 const dialogue16 = [
+	"Oh, so you saw the flowers I left in the closet.",
 	"You were comatose for nearly a week.",	
 	"Everyone at the firm was very sympathetic.",
-	"They arranged a bouquet to give you, with the note I left in the closet.",
+	"They arranged a bouquet to give you.",
 	"All fresh flowers, the highest of quality.",
 	"However, I couldn't find any purple hyacinths.",
 	"I remember, you like-",
@@ -198,15 +211,18 @@ const dialogue17 = [
 ]
 
 const dialogue18 = [
-	"When you were small, you used to collect them from every backyard.",
+	"When you were small, you used to collect them.",
+	"They'd end up all over the floor,",
+	"the kitchen,",
+	"the counters,",
 	"It would always take hours to clean up.",
-	"But you would look like royalty, covered head to toe in purple.",
 	"I never quite understood it.",
 	"But I knew you were happy.",
 ]
 
 const dialogue19 = [
-	"It's harder for me to tell whether you are happy now."
+	"It's harder for me to tell,",
+	"whether you are happy now.",
 ]
 
 const dialogue20 = [
@@ -215,22 +231,24 @@ const dialogue20 = [
 	"You existed with your nose in books.",
 	"And you insisted on accompanying me to every hearing.",
 	"Nevermind that I worked at a law firm that specialized in criminal trials.",
-	"You would ask endless questions about the sketchiest cases.",
+	"You were full of endless questions.",
 	"You were stubborn too.",
 	"You had refused to let go of my sleeve when I dropped you off for school.",
 	"That was the loudest I've ever heard you cry.",
-	"And I saw less of it over the years.",
-	"Sometimes I felt... like I had no clue what you were thinking.",
-	"Or why you chose the things you did.",
-	"But I had always respected your choices.",
-	"Even when you chose to take a break from your studies.",
 ]
 
 const dialogue21 = [
-	"...",
+	"And I saw less of it over the years.",
+	"Sometimes I felt... like I had no clue what you were thinking.",
+	"Or why you chose the things you did.",
 ]
 
 const dialogue22 = [
+	". . .",
+	"She sighs...",
+]
+
+const dialogue23 = [
 	"You may not remember it, but I was…",
 	"A bit shocked, when you told me that you were planning to take a gap year.",
 	"You were no stranger to spontaneous decisions.",
@@ -238,28 +256,300 @@ const dialogue22 = [
 	"'Knowledge is a muscle we must consistently use' after all.",
 ]
 
-const dialogue23 = [
-	"You feel a sense of deja vu. Maybe it was a familiar saying."
-]
-
 const dialogue24 = [
-
+	"You feel a sense of deja vu.",
+	"Maybe it was a familiar saying.",
 ]
 
-const dialogue30 = [
-	"But regardless of your past decisions.",
-	"That is the past.",
-	"I don't expect you to remember, but you're still my daughter."
+// Question: Neutral Relationship
+
+const dialogue25 = [
+	"Truth be told, I was never as close with you as your father.",
+	"He was the one who stayed home when I was at the office.",
+	"I remember, when you were younger, you would visit me at work all the time.",
 ]
 
-let dialogue = dialogue1;
+const dialogue26 =[
+	"We'd let you sit at the typewriter and clack away.",
+	"You were a ball of curiosity",
+	"And I felt like a mother who you looked up to.",
+	"For a brief few years, I felt like it would last forever.",
+]
+
+const dialogue27 =[
+	"...",
+]
+
+const dialogue28 =[
+	"I don't know why.",
+	"But you grew cold. Indifferent.",
+	"We were doing so well.",
+	"The LSAT prep academy had only good things to say of you.",
+	"Your practice scores were getting better and better",
+	"But then-",
+	"All of a sudden,",
+	"You stopped."
+]
+
+const dialogue29 =[
+	"...",
+]
+
+const dialogue30 =[
+	"I understand, everyone needs breaks.",
+]
+
+const dialogue31 =[
+	"But...",
+	"It is one thing to take a few weeks off.",
+	"It is another to drop out of the program entirely.",
+	"Without warning, without notice.",
+	"I had to find out months later, not from you, but from your academic advisor.",
+]
+
+const dialogue32 =[
+	"Can you imagine, how humilitating that was?",
+]
+
+const dialogue33 =[
+	". . ."
+]
+
+const dialogue34 =[
+	"In the end, I managed to convince them to put your program on hold.",
+	"I told them that you needed some time to reconfigure,",
+	"So that you can continue right where you left off.",
+	"They're relieved to know you're okay.",
+	"And that you haven't given up.",
+]
+
+// Talk Back: [Questioning]
+
+const dialogue35 =[
+	"But didn't I already give up?",
+]
+
+const dialogue36 =[
+	"You tell me.",
+]
+
+const dialogue37 =[
+	". . ."
+]
+
+const dialogue38 =[
+	"You are never one to give up.",
+	"Or at least 'were'.",
+	"I don't know if I know you anymore.",
+	"Or if you are up to the task.",
+	"Maybe you can prove me wrong.",
+]
+
+// Talk Back: [Accepting]
+
+const dialogue39 =[
+	"I see.",
+	"Well, thank you, I suppose.",
+]
+
+const dialogue40 =[
+	"You have nothing to thank me for.",
+	"I'm confident that after giving it a bit of thought, you would have realized your mistake.",
+]
+
+// Question: Bad Relationship
+
+const dialogue41 =[
+	"A bad..",
+	"I don't know if we had such terrible thing as a 'bad relationship'.",
+]
+
+const dialogue42 =[
+	"Her features harden.",
+	"Though, behind pursed lips and wet eyes, you see a glimmer of sadness .",
+]
+
+const dialogue43 =[
+	"To have that be your first impression of me...",
+	"...I don't know what to think.",
+	"We weren't always like this.",
+]
+
+const dialogue44 = [
+	"There was a time that you'd be happy to visit me at work.",
+	"I would tell everyone, 'This is my daughter.'",
+	"And we'd let you practice breaking down the case. You were always good at it.",
+	"You excelled in most subjects."
+]
+
+const dialogue45 =[
+	"I don't know how it went wrong.",
+	"What could've possibly spurred you to-",
+]
+
+const dialogue46 = [
+	". . ."
+]
+
+const dialogue47 = [
+	"I had my worries.",
+	"Especially when you started hanging out with that girl in highschool",
+	"She always smelled like smoke and cigar.",
+	"And I would get calls from the counselor- about you skipping classes.",
+	"Why weren't you in class?",
+	"Why did you go to- who knows where?",
+	"And hide it from me?",
+	"Was I not your mother?",
+	"Did I not deserve the respect of knowing where my daughter is?",
+	"After all I-",
+]
+
+const dialogue48 = [
+	". . ."
+]
+
+const dialogue49 = [
+	"But... even then, you never stopped your studies.",
+	"I would catch you coming back late at night.",
+	"Falling asleep at your desk with your workbooks filled.",
+	"And I left you alone.",
+	"Because it meant that I did not need to worry. You had still cared after all.",
+	"And you eventually stopped hanging out with that girl.",
+]
+
+const dialogue50 = [
+	"So when did it all change?",
+	"When did work become a second priority?",
+	"To the point where you're so ashamed to be my daughter,",
+	"That you quit pre-law without telling anyone, much less your advisor, who I had to hear it from.",
+	"Can you imagine, how humilitating that was?",
+	"I, your mother, had nothing to say."
+]
+
+const dialogue51 =[
+	". . .",
+	"She lets out a deep sigh and massages her eyes.",
+]
+
+const dialogue52 =[
+	"It took some convincing.",
+	"But after we were unable to reach you,",
+	"In the end, I managed to convince them to put your program on hold.",
+	"I told them that you needed some time to reconfigure,",
+	"So that you can continue right where you left off.",
+	"I had to take time off work to talk out the details with your advisor, on your behalf.",
+]
+
+const dialogue53 =[
+	"I know that you're extremely stubborn when you want to be.",
+	"Your father always said that you got it from me.",
+	"Even if you don't remember it.",
+	"But do not give up your future for a petty feud with me."
+]
+
+const dialogue54 =[
+	". . ."
+]
+
+const dialogue55 = [
+	"Sometimes I wish that you were a little less like me."
+]
+
+// Closing Remarks
+
+const dialogue57 = [
+	"But that's in the past now.",
+	"I don't expect you to remember everything,",
+	"But know that you're still my daughter.",
+	"I want you to see this as a chance to get back on your feet.",
+	"To become the person you were always meant to be.",
+	"Right now, your recovery is most important.",
+	"Have you been eating well? What do they feed you in these facilities?",
+]
+
+const dialogue58 =[
+	"Just some classic protein and veggies.",
+	"Nothing to worry about.",
+]
+
+const dialogue59 =[
+	"Only porridge so far.",
+	"I wish we got seasonin at least."
+]
+
+const dialogue60 =[
+	"I think they called it mystery meat?",
+]
+
+const dialogue61=[
+	"*Ring Ring*",
+]
+
+const dialogue62=[
+	"Oh, give me a moment.",
+	"I need to take this."
+]
+
+const dialogue63=[
+	"Hello? Oh...yes... okay. Yes, I am... no, no I have time... I'll be right there..."
+]
+
+const dialogue64=[
+	"That was the firm.",
+	"They need me in for another case.",
+	"We need to cut it short for today.",
+]
+
+const dialogue65=[
+	"...",
+	"You can feel her hesitating to say something.",
+	"At last, she turns to you with the same stern expression as before.",
+]
+
+const dialogue66=[
+	"You should know that the firm and I will always be there when you're ready.",
+	"Well, until then.",
+]
+
+const dialogue67=[
+	"You watch as your Mother leaves the room.",
+	"She leaves, answering the phone on the way out.",
+	"The Nurse comes back in."
+]
+
+const dialogue68=[
+	"How was it?",
+]
+
+const dialogue69=[
+	"She doesn't give you a chance to respond before continuing.",
+]
+
+const dialogue70=[
+	"You can tell me after visiting hours are over.",
+	"You're almost done.",
+	"Are you ready for your final visitor?",
+	"She's been waiting a long while to see you.",
+	"You must be a lucky one.",
+]
+
+const dialogue71=[
+	"'A lucky one..?'",
+	"Who is-?",
+]
+
+const dialogue72=[
+	"I'm going to let her in now.",
+]
+
+let dialogue = intro;
 let index = 0;
 let typing = false;
 const textEl = document.getElementById("text");
 const box = document.getElementById("box");
 const nameEl = document.getElementById("name");
-document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
-nameEl.innerHTML = "???";
+document.getElementById("characterImg").src = "";
+nameEl.innerHTML = "";
 box.addEventListener("click", next);
 
 function typeLine(line) {
@@ -293,6 +583,9 @@ function loadDialogue(newDialogue) {
 	dialogue = newDialogue;
 	index = 0;
 	// Mother Unknown //
+	if (newDialogue === intro) {
+		nameEl.innerHTML = ""
+	}
 	if (newDialogue === dialogue5 || newDialogue === dialogue7) {
 		nameEl.innerHTML = "???";
 		document.getElementById("characterImg").src = "game-img/Mother-Serious-Talk.png";
@@ -302,35 +595,86 @@ function loadDialogue(newDialogue) {
 	} else if (newDialogue === dialogue6) {
 		nameEl.innerHTML = "???";
 		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
-
-	// Mother Known // 
-	} else if (newDialogue === dialogue8 || newDialogue === dialogue10 ||newDialogue === dialogue15 || newDialogue === dialogue16 || newDialogue === dialogue19){
-		nameEl.innerHTML = "Mother";
-		document.getElementById("characterImg").src = "game-img/Mother-Serious-Talk.png";
-	} else if (newDialogue === dialogue9 || newDialogue === dialogue4){
-		nameEl.innerHTML = "";
-		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
-
-	} else if (newDialogue === dialogue12 || newDialogue === dialogue13) {
-		nameEl.innerHTML = "Mother"
-		document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
-
-	} else if (newDialogue === dialogue17) {
-		nameEl.innerHTML = "Mother"
-		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
-
-	} else if (newDialogue === dialogue18 || newDialogue === dialogue20) {
-		nameEl.innerHTML = "Mother"
-		document.getElementById("characterImg").src = "game-img/Mother-Smile-Talk.png";
-
-	// Mother Silent
 	} else if (newDialogue === dialogue2) {
 		nameEl.innerHTML = "???";
 		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
 
-	} else if (newDialogue === dialogue11 || newDialogue === dialogue14 || newDialogue === dialogue20) {
-		nameEl.innerHTML = "Mother"
+// Mother Serious - Talking // 
+	} else if (newDialogue === dialogue8 || newDialogue === dialogue10 ||newDialogue === dialogue15 || newDialogue === dialogue16 || newDialogue === dialogue19
+		|| newDialogue === dialogue23 || newDialogue === dialogue31 || newDialogue === dialogue34 || newDialogue === dialogue36 || newDialogue === dialogue38
+		|| newDialogue === dialogue40 || newDialogue === dialogue41 || newDialogue === dialogue47 || newDialogue === dialogue49 || newDialogue === dialogue53
+		|| newDialogue === dialogue57 || newDialogue === dialogue64 || newDialogue === dialogue66
+	){
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious-Talk.png";
+
+// Mother -- Serious Reaction to Action //
+	} else if (newDialogue === dialogue9 || newDialogue === dialogue4 || newDialogue === dialogue24 || newDialogue === dialogue61){
+		nameEl.innerHTML = "";
 		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+// Mother Serious - Silent // 
+	} else if (newDialogue === dialogue11 || newDialogue === dialogue14 ||
+		newDialogue === dialogue37 || newDialogue === dialogue46) {
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+// Mother Serious - You Talking // 
+	} else if (newDialogue === dialogue35 || newDialogue === dialogue39) {
+		nameEl.innerHTML = "You";
+		document.getElementById("characterImg").src = "game-img/Mother-Serious.png";
+
+// Mother Sad - Talking //
+	} else if (newDialogue === dialogue12 || newDialogue === dialogue13 || newDialogue === dialogue21 || newDialogue === dialogue25 || newDialogue === dialogue28 
+		|| newDialogue === dialogue32 || newDialogue === dialogue43 || newDialogue === dialogue45 || newDialogue === dialogue50 || newDialogue === dialogue52
+		|| newDialogue === dialogue62
+	) {
+		nameEl.innerHTML = "Mother"
+		document.getElementById("characterImg").src = "game-img/Mother-Sad-Talk.png";
+	
+// Mother Sad - Silent
+	} else if (newDialogue === dialogue2) {
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Sad.png";
+
+// Mother Sad - Action
+	} else if ( newDialogue ===dialogue22 || newDialogue === dialogue42 || newDialogue === dialogue65) {
+		nameEl.innerHTML = "";
+		document.getElementById("characterImg").src = "game-img/Mother-Sad.png";
+
+// Mother Sigh - Talking // 
+	} else if (newDialogue === dialogue17 || newDialogue === dialogue29 || newDialogue === dialogue30 || newDialogue === dialogue33 || newDialogue === dialogue51 || newDialogue === dialogue54 || newDialogue === dialogue55) {
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
+
+// Mother Sigh - Reacting // 
+	} else if (newDialogue === dialogue51) {
+		nameEl.innerHTML = "";
+		document.getElementById("characterImg").src = "game-img/Mother-Sigh.png";
+
+// Mother Smile - Talking //
+	} else if (newDialogue === dialogue18 || newDialogue === dialogue20 || newDialogue === dialogue26 || newDialogue === dialogue44) {
+		nameEl.innerHTML = "Mother";
+		document.getElementById("characterImg").src = "game-img/Mother-Smile-Talk.png";
+
+// Mother Smile - At You //
+	} else if (newDialogue === dialogue58 || newDialogue === dialogue59 || newDialogue === dialogue60) {
+		nameEl.innerHTML = "You";
+		document.getElementById("characterImg").src = "game-img/Mother-Smile.png";
+
+// No Speaker + No Img 
+	} else if (newDialogue === dialogue63 || newDialogue === dialogue67 || newDialogue === intro) {
+		nameEl.innerHTML = "";
+
+// Nurse - Talking
+	} else if (newDialogue === dialogue68 || newDialogue === dialogue70 || newDialogue === dialogue72) {
+		nameEl.innerHTML = "Nurse";
+		document.getElementById("characterImg").src = "game-img/Nurse-Talk.png";
+
+// Nurse - Listening
+	} else if (newDialogue === dialogue69 || newDialogue === dialogue71) {
+		nameEl.innerHTML = "You";
+		document.getElementById("characterImg").src = "game-img/Nurse-Closed.png";
 
 	}
 	box.removeEventListener("click", next);
@@ -343,21 +687,78 @@ function next() {
 	if (typing) return;
 	index++;
 	if (index >= dialogue.length) {
-		if (dialogue === dialogue1){
-			loadDialogue(dialogue2)
+		if (dialogue === intro || dialogue === dialogue1){
+			loadDialogue(dialogue === intro ? dialogue1 : dialogue2)
 		} else if (dialogue === dialogue2 || dialogue === dialogue3 || dialogue === dialogue4 || dialogue === dialogue5) {
 			loadDialogue(dialogue === dialogue2 ? dialogue3 : dialogue === dialogue3 ? dialogue4 : dialogue === dialogue4 ? dialogue5 : dialogue6);
 		} else if (dialogue === dialogue6 || dialogue === dialogue7 || dialogue === dialogue8) {
 			loadDialogue(dialogue === dialogue6 ? dialogue7 : dialogue === dialogue7 ? dialogue8 : dialogue9);
 		} else if (dialogue === dialogue9 || dialogue === dialogue10 || dialogue === dialogue11 || dialogue === dialogue12 || dialogue === dialogue13 || dialogue === dialogue14) {
 			loadDialogue(dialogue === dialogue9 ? dialogue10 : dialogue === dialogue10 ? dialogue11 : dialogue === dialogue11 ? dialogue12 : dialogue === dialogue12 ? dialogue13 : dialogue === dialogue13 ? dialogue14 : dialogue15);
+		
+// Question #1
+
 		} else if (dialogue === dialogue15) {
 			textEl.innerHTML = `
 			<button onclick="loadDialogue(dialogue16)">Why flowers?</button>
 			<button onclick="loadDialogue(dialogue20)">What kind of person was I?</button>`;
 			box.removeEventListener("click", next);
+// Flowers
+		} else if (dialogue === dialogue16 || dialogue === dialogue17 || dialogue === dialogue18) {
+			loadDialogue(dialogue === dialogue16 ? dialogue17 : dialogue === dialogue17 ? dialogue18 : dialogue19);
+
+// Person Question
+		} else if (dialogue === dialogue20 || dialogue === dialogue21 || dialogue === dialogue22 || dialogue === dialogue23) {
+			loadDialogue(dialogue === dialogue20 ? dialogue21 : dialogue === dialogue21 ? dialogue22 : dialogue === dialogue22 ? dialogue23 : dialogue24)
+		
+// Question #2
+
+		} else if (dialogue === dialogue19) {
+			textEl.innerHTML = `
+			<button onclick="loadDialogue(dialogue41)">Why did we have a bad relationship?</button>;
+			<button onclick="loadDialogue(dialogue25)">What was our relationship like?</button>`;
+			box.removeEventListener("click", next);
+		} else if (dialogue === dialogue24) {
+			textEl.innerHTML = `
+			<button onclick="loadDialogue(dialogue25)">What was our relationship like?</button>;
+			<button onclick="loadDialogue(dialogue41)">Why did we have a bad relationship?</button>`;
+
+// Neutral Relationship
+			box.removeEventListener("click", next); 
+		} else if (dialogue === dialogue25 || dialogue === dialogue26 || dialogue === dialogue26 || dialogue === dialogue27 || dialogue === dialogue28 || dialogue === dialogue29|| dialogue === dialogue30|| dialogue === dialogue31 || dialogue === dialogue32|| dialogue === dialogue33 ) {
+			loadDialogue(dialogue===dialogue25 ? dialogue26 : dialogue === dialogue26 ? dialogue27 : dialogue===dialogue27 ? dialogue28 : dialogue===dialogue28 ? dialogue29 : dialogue === dialogue29 ? dialogue30 : dialogue === dialogue30 ? dialogue31 : dialogue=== dialogue31 ? dialogue32 : dialogue === dialogue32 ? dialogue33 : dialogue34)
+// Reaction Choice
+		} else if (dialogue===dialogue34) {
+			textEl.innerHTML =`
+			<button onclick="loadDialogue(dialogue35)">[Be skeptical]</button>;
+			<button onclick="loadDialogue(dialogue39)">[Be accepting]</button>
+			`;
+// Skeptical
+		} else if (dialogue === dialogue35 || dialogue===dialogue36|| dialogue===dialogue37) {
+			loadDialogue(dialogue===dialogue36 ? dialogue37 : dialogue38)
+// Accepting
+		} else if(dialogue === dialogue39){
+			loadDialogue(dialogue40)
 			return;
-		}
+// Bad Relationship
+		} else if(dialogue===dialogue41 || dialogue===dialogue42 || dialogue===dialogue43 || dialogue===dialogue44 || dialogue===dialogue45 || dialogue===dialogue46 || dialogue===dialogue47 || dialogue===dialogue48 || dialogue===dialogue49 || dialogue===dialogue50 || dialogue===dialogue51 || dialogue===dialogue52 || dialogue===dialogue53 || dialogue === dialogue54) {
+			loadDialogue(dialogue===dialogue41 ? dialogue42 : dialogue===dialogue42 ? dialogue43 : dialogue === dialogue43 ? dialogue44 : dialogue === dialogue44 ? dialogue45 : dialogue === dialogue45 ? dialogue46 : dialogue === dialogue46 ? dialogue47 : dialogue === dialogue47 ? dialogue48 : dialogue === dialogue48 ? dialogue49 : dialogue === dialogue49 ? dialogue50 : dialogue === dialogue50 ? dialogue51 : dialogue === dialogue51 ? dialogue52 : dialogue === dialogue52 ? dialogue53 : dialogue === dialogue53 ? dialogue54 : dialogue55)
+// Closing Remarks
+		} else if(dialogue===dialogue55 || dialogue === dialogue38 || dialogue === dialogue40) {
+			loadDialogue(dialogue57)
+		} else if(dialogue===dialogue57) {
+			textEl.innerHTML =`
+			<button onclick="loadDialogue(dialogue58)">[Reassure]</button>;
+			<button onclick="loadDialogue(dialogue59)">[Complain]</button>;
+			<button onclick="loadDialogue(dialogue60)">[Joke]</button>
+			`;
+		} else if(dialogue===dialogue58 || dialogue===dialogue59 || dialogue===dialogue60) {
+			loadDialogue(dialogue61)
+		} else if(dialogue === dialogue61 || dialogue === dialogue62 || dialogue === dialogue63 || dialogue === dialogue64 || dialogue === dialogue65 || dialogue === dialogue66 || dialogue === dialogue67 || dialogue === dialogue68 || dialogue === dialogue69 || dialogue === dialogue70 || dialogue === dialogue71) {
+			loadDialogue(dialogue === dialogue61 ? dialogue62 : dialogue === dialogue62 ? dialogue63 : dialogue63 ? dialogue64 : dialogue === dialogue64 ? dialogue65 : dialogue === dialogue65 ? dialogue66 : dialogue === dialogue66 ? dialogue67 : dialogue === dialogue67 ? dialogue68 : dialogue === dialogue68 ? dialogue69 : dialogue === dialogue69 ? dialogue70 : dialogue === dialogue70 ? dialogue71 : dialogue72)
+		} else if(dialogue === dialogue72)
+			textEl.innerHTML = '<a href="D1-Lover.html"><button>Wait-</button></a>';
+			return;
 		return;
 	}
 	typeLine(dialogue[index]);
